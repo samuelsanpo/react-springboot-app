@@ -16,6 +16,7 @@ import java.util.List;
 @RequestMapping("/api/messages")
 @RequiredArgsConstructor
 @Slf4j
+@CrossOrigin(origins = "http://localhost:5173") //port of React vite
 public class MessageController {
 
     private final MessageService messageService;
