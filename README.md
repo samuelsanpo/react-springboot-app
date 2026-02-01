@@ -1,73 +1,125 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Message Management System 
 
-Currently, two official plugins are available:
+This is a fullstack application built with **Spring Boot 4** and **React (Vite)**. It allows users to view, delete, and create messages with a focus on clean architecture and smooth user experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Quick Start
 
-## React Compiler
+### 1. Prerequisites
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Ensure you have the following installed:
 
-## Expanding the ESLint configuration
+-   **Java 21** (JDK)
+    
+-   **Maven 3.9+**
+    
+-   **Node.js 20+** & npm
+    
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 2. Backend Setup (Spring Boot)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1.  Navigate to the backend folder: `cd backend/messages`
+    
+2.  Install dependencies: `mvn clean install`
+    
+3.  Run the application: `mvn spring-boot:run`
+    
+    -   The API will be available at: `http://localhost:8080`
+        
+    -   H2 Console: `http://localhost:8080/h2-console` (JDBC URL: `jdbc:h2:mem:messagedb`)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 📖 API Documentation (Swagger)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Once the backend is running, you can explore and test the API endpoints interactively via Swagger UI:
+
+-   **URL:** [http://localhost:8080/swagger-ui/index.html](https://www.google.com/search?q=http://localhost:8080/swagger-ui/index.html)
+        
+
+### 3. Frontend Setup (React)
+
+1.  Navigate to the frontend folder: `cd frontend`
+    
+2.  Install dependencies: `npm install`
+    
+3.  Start the development server: `npm run dev`
+    
+    -   The app will be available at: `http://localhost:5173`
+        
+
+----------
+
+## 🛠️ Tech Stack & Tools
+
+### **Backend**
+
+-   **Framework:** Spring Boot 4.0.2
+    
+-   **Database:** H2 (In-memory)
+    
+-   **Testing:** JUnit 5 & Mockito (Unit Testing)
+    
+-   **Documentation:** SpringDoc OpenAPI (Swagger)
+    
+-   **Key Features:**
+    
+    -   Layered Architecture (Controller -> Service -> Repository).
+        
+    -   Data Validation using `jakarta.validation`.
+        
+    -   Global Exception Handling for consistent API responses.
+        
+    -   DTO pattern to decouple Persistence and API layers.
+        
+
+### **Frontend**
+
+-   **Framework:** React 18 with TypeScript
+    
+-   **State Management:** TanStack Query (React Query) for server-state.
+    
+-   **Styling:** Tailwind CSS v4.
+    
+-   **Routing:** React Router Dom.
+    
+-   **UX Enhancements:** - Loading Skeletons.
+        
+    -   Responsive Inbox layout.
+        
+
+----------
+
+## 🧪 Testing
+
+The backend includes **Unit Tests** for the Controller layer, ensuring business logic and DTO mapping work as expected without needing a full server restart.
+
+To run the tests:
+
+Bash
+
+```
+cd backend/messages
+mvn test
+
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+----------
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📁 Project Structure
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Plaintext
+
 ```
+.
+├── backend/messages      # Spring Boot application
+│   ├── src/main/java     # Logic and Configuration
+│   └── src/test/java     # Unit Tests 
+└── frontend/             # React + Vite + Tailwind v4
+    ├── src/components    # Reusable UI components
+    ├── src/hooks         # Custom hook
+    └── src/services      # API Axios configuration
+
+```
+
+----------
+
+Samuel Sanabria - 2026
